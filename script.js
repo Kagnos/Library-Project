@@ -1,6 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-    console.log("Page loaded and script running!");
-});
+const library = [];
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -16,18 +14,3 @@ function Book(title, author, pages, read) {
 }
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", "have not");
-
-function Player(name, marker) {
-  this.name = name;
-  this.marker = marker;
-  this.sayName = function() {
-    console.log(this.name)
-  };
-}
-
-const player1 = new Player('steve', 'X');
-const player2 = new Player('also steve', 'O');
-
-Player.prototype.sayHello = function() {
-   console.log("Hello, I'm a player!");
-};
