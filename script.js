@@ -30,6 +30,7 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
+  id = crypto.randomUUID();
   this.info = function() {
     return `${this.title} by ${this.author}, ${this.pages} pages, you ${this.read} read it before.`;
   };
@@ -54,3 +55,10 @@ function callLibrary() {
     libraryContainer.textContent += `Title: ${library[i].title}\nAuthor: ${library[i].author}\nPages: ${library[i].pages}\nRead: ${library[i].read}\nid: ${library[i].id}\n\n`;
   }
 };
+
+const newBookButton = document.querySelector("#new-book-button");
+const dialog = document.querySelector("dialog");
+
+newBookButton.addEventListener("click", () => {
+  dialog.showModal();
+});
