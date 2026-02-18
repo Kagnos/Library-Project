@@ -69,8 +69,3 @@ allButtons.forEach((button) =>
         }
     })
 );
-
-
-// To Do:
-
-// Restructure page under one grid container
