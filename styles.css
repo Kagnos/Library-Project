@@ -57,51 +57,114 @@ h1, h2, h3, h4, h5, h6 {
 
 /* My Code: */
 
-body {
-    background-color: white;
+/* Custom Colors */
+
+:root {
+    --background-color: #47321e;
+    --shelf-color: #68492d;
 }
 
 /* Containers */
 
 #main-container {
     display: flex;
-    justify-content: center;
+    justify-content: left;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    border: 10px solid var(--shelf-color);
 }
 
 #sidebar-container {
-    display: flex;
-    flex-direction: column;
-    margin: 1%;
-    gap: 1%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(9, 1fr);
+    width: 15vw;
     font-size: 2rem;
-    border: 5px solid red;
+    background-color: var(--background-color);
 }
 
 #library-container {
     display: flex;
-    min-height: 100vh;
-    width: 70vw;
-    border: 5px solid black;
+    min-height: fit-content;
+    width: 85vw;
+    background-color: var(--background-color);
+    border-left: 10px solid var(--shelf-color);
     white-space: pre;
 }
 
-/*  */
-
-.button {
-    background-color: #c9baff;
-    padding: 1%;
-    border: 2px solid gray;
-    border-radius: 10px;
-}
-
-.button:active {
-    background-color: #b19bff;
-}
+/* Sidebar */
 
 .sidebar-button {
     font-size: 2rem;
+    margin: 8% 8% 0 8%;
+}
+
+.sidebar-shelf {
+    color: var(--shelf-color);
+    background-color: var(--shelf-color);
+    height: 10px;
+    width: 100%;
+}
+
+#new-book-button {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    background-color: green;
+}
+
+#new-book-button:active {
+    background-color: #029e02;
+}
+
+/* Buttons */
+
+.button {
+    padding: 1%;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+}
+
+/* Dialog */
+
+#new-book-dialog {
+    background-color: #333;
+    border-color: goldenrod;
+    color: white;
+    font-size: 2rem;
+}
+
+#dialog-container > header {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .dialog-button {
     font-size: 1rem;
+}
+
+#cancel-button {
+    background-color: #861010;
+}
+
+#cancel-button:active {
+    background-color: #9e1414;
+}
+
+#clear-button {
+    background-color: #545488;
+}
+
+#clear-button:active {
+    background-color: #6969a8;
+}
+
+#add-book-button {
+    background-color: green;
+}
+
+#add-book-button:active {
+    background-color: #029e02;
 }
