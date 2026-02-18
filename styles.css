@@ -68,7 +68,7 @@ body {
     justify-content: center;
 }
 
-#button-container {
+#sidebar-container {
     display: flex;
     flex-direction: column;
     margin: 1%;
@@ -96,4 +96,12 @@ body {
 
 .button:active {
     background-color: #b19bff;
+}
+
+.sidebar-button {
+    font-size: 2rem;
+}
+
+.dialog-button {
+    font-size: 1rem;
 }
