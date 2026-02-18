@@ -67,36 +67,39 @@ h1, h2, h3, h4, h5, h6 {
 /* Containers */
 
 #main-container {
-    display: flex;
-    justify-content: left;
-    min-height: 100vh;
-    background-color: var(--background-color);
-    border: 10px solid var(--shelf-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
 }
 
 #sidebar-container {
+    position: fixed;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(9, 1fr);
-    width: 15vw;
+    padding: 1%;
+    width: 10vw;
+    height: 100vh;
     font-size: 2rem;
     background-color: var(--background-color);
 }
 
 #library-container {
-    display: flex;
-    min-height: fit-content;
-    width: 85vw;
+    display: grid;
+    min-height: 100vh;
+    width: 90vw;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
     background-color: var(--background-color);
-    border-left: 10px solid var(--shelf-color);
     white-space: pre;
+    border: 10px solid var(--shelf-color);
 }
 
 /* Sidebar */
 
 .sidebar-button {
-    font-size: 2rem;
-    margin: 8% 8% 0 8%;
+    font-size: 1.5rem;
+    height: fit-content;
 }
 
 .sidebar-shelf {
@@ -107,8 +110,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #new-book-button {
-    grid-row: 1 / 2;
-    grid-column: 1 / 2;
     background-color: green;
 }
 
