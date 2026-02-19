@@ -69,3 +69,12 @@ allButtons.forEach((button) =>
         }
     })
 );
+
+
+
+
+// To Do:
+
+// Fix spacing on sidebar buttons and library books - DONE ish
+// Add header and style page format to match admin dashboard - DONE
+// Add SVGs for buttons similar to admin dashboard, when width is small, remove button text but keep SVG
