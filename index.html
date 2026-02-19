@@ -25,19 +25,13 @@
     </header>
 
     <div id="library-container">
-        <div class="book">book</div>
-        <div class="book">book</div>
-        <div class="book">book</div>
-        <div class="book">book</div>
-        <div class="book">book</div>
-        <div class="book">book</div>
-        <div class="book">book</div>
+        <div class="book">What are you reading?</div>
     </div>
     
     <dialog id="new-book-dialog">
         <div id="dialog-container">
             <header>New Book</header>
-            <form action="">
+            <form id="dialog-form" method="dialog">
                 <div>
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="book_title" minlength="2" maxlength="50" required>
@@ -59,7 +53,7 @@
                 </div>
                 <button class="button dialog-button" id="cancel-button" type="reset">Cancel</button>
                 <button class="button dialog-button" id="clear-button" type="reset">Clear</button>
-                <button class="button dialog-button" id="add-book-button" type="submit">Add Book</button>
+                <button class="button dialog-button" id="add-book-button" type="reset">Add Book</button>
             </form>
         </div>
     </dialog>

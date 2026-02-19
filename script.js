@@ -36,7 +36,7 @@ function Book(title, author, pages, read) {
     };
 }
 
-function addBookToLibrary (title, author, pages, read) {
+function addBookToLibrary(title, author, pages, read) {
     let newBook = {
         title: title,
         author: author,
@@ -45,16 +45,28 @@ function addBookToLibrary (title, author, pages, read) {
         id: crypto.randomUUID()
     };
     library.push(newBook);
+    libraryContainer.appendChild(book);
+    book.textContent = `${newBook.title} written by ${newBook.author}\n\n${newBook.pages} pages read: ${newBook.read}`;
 };
 
 const libraryContainer = document.querySelector("#library-container");
 
+let book = document.createElement("div")
+book.classList.add("book");
+
 function callLibrary() {
-  libraryContainer.textContent = "";
-  for (i = 0; i < library.length; i++) {
-    libraryContainer.textContent += `Title: ${library[i].title}\nAuthor: ${library[i].author}\nPages: ${library[i].pages}\nRead: ${library[i].read}\nid: ${library[i].id}\n\n`;
-  }
+        for (i = 0; i < library.length; i++) {
+            libraryContainer.appendChild(book);
+            };
 };
+
+const dialogForm = document.querySelector("#dialog-form");
+
+function createBook() {
+    const data = new FormData(dialogForm);
+    const entries = Object.fromEntries(data.entries());
+    addBookToLibrary(entries.book_title, entries.book_author, entries.book_pages, entries.book_read);
+}
 
 const allButtons = document.querySelectorAll(".button");
 const dialog = document.querySelector("dialog");
@@ -66,11 +78,12 @@ allButtons.forEach((button) =>
                 return dialog.showModal();
             case "cancel-button":
                 return dialog.close();
+            case "add-book-button":
+                createBook();
+                return dialog.close();
         }
     })
 );
-
-
 
 
 // To Do:

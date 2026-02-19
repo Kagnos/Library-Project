@@ -89,22 +89,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header-container {
+    display: flex;
+    padding: 20px;
+    gap: 10px;
     grid-row: 1 / 2;
     grid-column: 2 / 3;
-    background-color: #b8ddff;
+    background-color: #c8e2fc;
     box-shadow: 0px 1px 5px black;
-    
+    height: max(10vh, 100px);
 }
 
 #library-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    display: flex;
+    flex-direction: column;
     padding: 20px;
-    gap: 10px;
+    gap: 20px;
     grid-row: 2 / 3;
     grid-column: 2 / 3;
-    background-color: #a3c3e0;
+    background-color: #b6cee6;
     white-space: pre;
     z-index: -1;
 }
@@ -151,16 +153,23 @@ h1, h2, h3, h4, h5, h6 {
 /* Library */
 
 .book {
-    background-color: #ffffff;
+    text-align: center;
+    background-color: white;
+    min-height: 20vh;
     height: 20vh;
+    padding: 10px;
+    font-size: 1.5rem;
+    border: 3px solid goldenrod;
+    border-radius: 10px;
 }
 
 /* Dialog */
 
 #new-book-dialog {
-    background-color: #333;
-    border-color: goldenrod;
-    color: white;
+    background-color: #b6cee6;
+    border: 3px solid goldenrod;
+    border-radius: 10px;
+    color: black;
     font-size: 2rem;
 }
 
