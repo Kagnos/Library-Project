@@ -153,14 +153,31 @@ h1, h2, h3, h4, h5, h6 {
 /* Library */
 
 .book {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
     background-color: white;
     min-height: 20vh;
     height: 20vh;
-    padding: 10px;
-    font-size: 1.5rem;
+    padding: 3%;
+    font-size: 2rem;
     border: 3px solid goldenrod;
     border-radius: 10px;
+}
+
+.library-button {
+    font-size: 1.5rem;
+    height: fit-content;
+    width: fit-content;
+}
+
+#remove-book-button {
+    background-color: #c70000;
+}
+
+#remove-book-button:active {
+    background-color: red;
 }
 
 /* Dialog */

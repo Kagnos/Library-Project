@@ -1,25 +1,4 @@
 const library = [
-    {
-        title: "The Hobbit",
-        author: "J.R.R. Tolkien",
-        pages: "295",
-        read: "have not",
-        id: crypto.randomUUID()
-    },
-    {
-        title: "Test Book 1",
-        author: "Edward Scissorhands",
-        pages: "351",
-        read: "have",
-        id: crypto.randomUUID()
-    },
-    {
-        title: "Test Book 2",
-        author: "Jacob Reinstein",
-        pages: "147",
-        read: "have not",
-        id: crypto.randomUUID()
-    }
 ];
 
 function Book(title, author, pages, read) {
@@ -36,6 +15,12 @@ function Book(title, author, pages, read) {
     };
 }
 
+let div = document.createElement("div");
+let removeBookButton = document.createElement("button");
+removeBookButton.classList.add("button", "library-button");
+removeBookButton.id = "remove-book-button";
+removeBookButton.textContent = "Remove";
+
 function addBookToLibrary(title, author, pages, read) {
     let newBook = {
         title: title,
@@ -46,7 +31,14 @@ function addBookToLibrary(title, author, pages, read) {
     };
     library.push(newBook);
     libraryContainer.appendChild(book);
-    book.textContent = `${newBook.title} written by ${newBook.author}\n\n${newBook.pages} pages read: ${newBook.read}`;
+    book.appendChild(div).textContent = `Title: ${newBook.title}`;
+    div = document.createElement("div");
+    book.appendChild(div).textContent = `Author: ${newBook.author}`;
+    div = document.createElement("div");
+    book.appendChild(div).textContent = `Pages: ${newBook.pages}`;
+    div = document.createElement("div");
+    book.appendChild(div).textContent = `Read: ${newBook.read}`;
+    book.appendChild(removeBookButton);
 };
 
 const libraryContainer = document.querySelector("#library-container");
@@ -81,6 +73,8 @@ allButtons.forEach((button) =>
             case "add-book-button":
                 createBook();
                 return dialog.close();
+            case "remove-book-button":
+                return alert("test");
         }
     })
 );
@@ -88,6 +82,11 @@ allButtons.forEach((button) =>
 
 // To Do:
 
+// Figure out how to append multiple divs - DONE
+// Clean up js file, create headers
+// Remove "What are you reading" when a book is added
+// Create edit and delete buttons, tbh I don't really need a side bar AND a header...
+// Add view changer functionality
+
 // Fix spacing on sidebar buttons and library books - DONE ish
-// Add header and style page format to match admin dashboard - DONE
 // Add SVGs for buttons similar to admin dashboard, when width is small, remove button text but keep SVG
