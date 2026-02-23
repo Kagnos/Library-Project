@@ -13,10 +13,12 @@ const libraryContainer = document.querySelector("#library-container");
 let book = document.createElement("div")
 book.classList.add("book");
 
-const dialogForm = document.querySelector("#dialog-form");
+const newBookDialogForm = document.querySelector("#new-book-dialog-form");
 
-const allButtons = document.querySelectorAll(".button");
-const dialog = document.querySelector("dialog");
+const allButtons = document.querySelectorAll("button");
+
+const usernameDialog = document.querySelector("#username-dialog");
+const newBookDialog = document.querySelector("#new-book-dialog");
 
 function Book(title, author, pages, read) {
     if (!new.target) {
@@ -85,7 +87,7 @@ function callLibrary() {
 };
 
 function createBook() {
-    const data = new FormData(dialogForm);
+    const data = new FormData(newBookDialogForm);
     const entries = Object.fromEntries(data.entries());
     addBookToLibrary(entries.book_title, entries.book_author, entries.book_pages, entries.book_read);
 }
@@ -94,12 +96,18 @@ allButtons.forEach((button) =>
     button.addEventListener("click", () => {
         switch(button.id) {
             case "new-book-button":
-                return dialog.showModal();
-            case "cancel-button":
-                return dialog.close();
-            case "add-book-button":
+                return newBookDialog.showModal();
+            case "cancel-new-book-button":
+                return newBookDialog.close();
+            case "add-new-book-button":
                 createBook();
-                return dialog.close();
+                return newBookDialog.close();
+            case "username-button":
+                return usernameDialog.showModal();
+            case "cancel-username-button":
+                return usernameDialog.close();
+            case "add-username-button":
+                return usernameDialog.close();
         }
     })
 );
@@ -120,3 +128,4 @@ allButtons.forEach((button) =>
 // Remove "What are you reading" when a book is added - DONE
 
 // git message:
+// Remove side bar and move new book button to header
