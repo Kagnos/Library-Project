@@ -1,5 +1,22 @@
-const library = [
-];
+const library = [];
+
+let div = document.createElement("div");
+
+let removeBookButton = document.createElement("button");
+removeBookButton.classList.add("button", "library-button", "remove-book-button");
+removeBookButton.textContent = "Remove";
+
+const placeholderBook = document.querySelector("#placeholder-book");
+
+const libraryContainer = document.querySelector("#library-container");
+
+let book = document.createElement("div")
+book.classList.add("book");
+
+const dialogForm = document.querySelector("#dialog-form");
+
+const allButtons = document.querySelectorAll(".button");
+const dialog = document.querySelector("dialog");
 
 function Book(title, author, pages, read) {
     if (!new.target) {
@@ -15,13 +32,11 @@ function Book(title, author, pages, read) {
     };
 }
 
-let div = document.createElement("div");
-let removeBookButton = document.createElement("button");
-removeBookButton.classList.add("button", "library-button");
-removeBookButton.id = "remove-book-button";
-removeBookButton.textContent = "Remove";
-
 function addBookToLibrary(title, author, pages, read) {
+    if(library.length === 0) {
+        placeholderBook.remove();
+    };
+
     let newBook = {
         title: title,
         author: author,
@@ -30,7 +45,12 @@ function addBookToLibrary(title, author, pages, read) {
         id: crypto.randomUUID()
     };
     library.push(newBook);
+
+    book = document.createElement("div");
+    book.classList.add("book");
     libraryContainer.appendChild(book);
+
+    div = document.createElement("div");
     book.appendChild(div).textContent = `Title: ${newBook.title}`;
     div = document.createElement("div");
     book.appendChild(div).textContent = `Author: ${newBook.author}`;
@@ -38,13 +58,12 @@ function addBookToLibrary(title, author, pages, read) {
     book.appendChild(div).textContent = `Pages: ${newBook.pages}`;
     div = document.createElement("div");
     book.appendChild(div).textContent = `Read: ${newBook.read}`;
+
+    removeBookButton = document.createElement("button");
+    removeBookButton.classList.add("button", "library-button", "remove-book-button");
+    removeBookButton.textContent = "Remove";
     book.appendChild(removeBookButton);
 };
-
-const libraryContainer = document.querySelector("#library-container");
-
-let book = document.createElement("div")
-book.classList.add("book");
 
 function callLibrary() {
         for (i = 0; i < library.length; i++) {
@@ -52,16 +71,11 @@ function callLibrary() {
             };
 };
 
-const dialogForm = document.querySelector("#dialog-form");
-
 function createBook() {
     const data = new FormData(dialogForm);
     const entries = Object.fromEntries(data.entries());
     addBookToLibrary(entries.book_title, entries.book_author, entries.book_pages, entries.book_read);
 }
-
-const allButtons = document.querySelectorAll(".button");
-const dialog = document.querySelector("dialog");
 
 allButtons.forEach((button) => 
     button.addEventListener("click", () => {
@@ -73,8 +87,6 @@ allButtons.forEach((button) =>
             case "add-book-button":
                 createBook();
                 return dialog.close();
-            case "remove-book-button":
-                return alert("test");
         }
     })
 );
@@ -83,10 +95,14 @@ allButtons.forEach((button) =>
 // To Do:
 
 // Figure out how to append multiple divs - DONE
+// Fix bug: form isn't required anymore
+// Implement remove button functionality
 // Clean up js file, create headers
-// Remove "What are you reading" when a book is added
-// Create edit and delete buttons, tbh I don't really need a side bar AND a header...
+// Remove "What are you reading" when a book is added - DONE
+// Create functioning edit and delete buttons, tbh I don't really need a side bar AND a header...
 // Add view changer functionality
 
 // Fix spacing on sidebar buttons and library books - DONE ish
 // Add SVGs for buttons similar to admin dashboard, when width is small, remove button text but keep SVG
+
+// git message:

@@ -86,6 +86,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 10px;
     font-size: 2rem;
     background-color: var(--background-color);
+    z-index: 2;
 }
 
 #header-container {
@@ -97,6 +98,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #c8e2fc;
     box-shadow: 0px 1px 5px black;
     height: max(10vh, 100px);
+    z-index: 1;
 }
 
 #library-container {
@@ -108,7 +110,6 @@ h1, h2, h3, h4, h5, h6 {
     grid-column: 2 / 3;
     background-color: #b6cee6;
     white-space: pre;
-    z-index: -1;
 }
 
 /* Buttons */
@@ -172,11 +173,11 @@ h1, h2, h3, h4, h5, h6 {
     width: fit-content;
 }
 
-#remove-book-button {
+.remove-book-button {
     background-color: #c70000;
 }
 
-#remove-book-button:active {
+.remove-book-button:active {
     background-color: red;
 }
 
@@ -201,27 +202,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #cancel-button {
-    background-color: #861010;
+    background-color: #c70000;
 }
 
 #cancel-button:active {
-    background-color: #9e1414;
+    background-color: red;
 }
 
 #clear-button {
-    background-color: #545488;
+    background-color: #7c7cca;
 }
 
 #clear-button:active {
-    background-color: #6969a8;
+    background-color: #9a9afc;
 }
 
 #add-book-button {
-    background-color: green;
+    background-color: #02ad02;
 }
 
 #add-book-button:active {
-    background-color: #029e02;
+    background-color: #04c404;
 }
 
 /* Media Queries */
