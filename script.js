@@ -6,7 +6,7 @@ let removeBookButton = document.createElement("button");
 removeBookButton.classList.add("button", "library-button", "remove-book-button");
 removeBookButton.textContent = "Remove";
 
-const placeholderBook = document.querySelector("#placeholder-book");
+let placeholderBook = document.querySelector("#placeholder-book");
 
 const libraryContainer = document.querySelector("#library-container");
 
@@ -61,14 +61,27 @@ function addBookToLibrary(title, author, pages, read) {
 
     removeBookButton = document.createElement("button");
     removeBookButton.classList.add("button", "library-button", "remove-book-button");
+    removeBookButton.id = newBook.id;
     removeBookButton.textContent = "Remove";
     book.appendChild(removeBookButton);
+
+    removeBookButton.addEventListener("click", (event) => {
+        const bookIndex = library.findIndex(item => item.id === event.target.id)
+        library.splice(bookIndex, 1);
+        libraryContainer.children[bookIndex].remove();
+        if(library.length === 0) {
+            placeholderBook = book;
+            placeholderBook.id = "placeholder-book";
+            placeholderBook.textContent = "What are you reading?";
+            libraryContainer.appendChild(placeholderBook);
+        }
+});
 };
 
 function callLibrary() {
-        for (i = 0; i < library.length; i++) {
-            libraryContainer.appendChild(book);
-            };
+    for (i = 0; i < library.length; i++) {
+        libraryContainer.appendChild(book);
+    };
 };
 
 function createBook() {
@@ -94,15 +107,16 @@ allButtons.forEach((button) =>
 
 // To Do:
 
-// Figure out how to append multiple divs - DONE
 // Fix bug: form isn't required anymore
 // Implement remove button functionality
 // Clean up js file, create headers
-// Remove "What are you reading" when a book is added - DONE
 // Create functioning edit and delete buttons, tbh I don't really need a side bar AND a header...
 // Add view changer functionality
+// Add SVGs for buttons similar to admin dashboard, when width is small, remove button text but keep SVG
+// Add line breaks on books when they break container width.
 
 // Fix spacing on sidebar buttons and library books - DONE ish
-// Add SVGs for buttons similar to admin dashboard, when width is small, remove button text but keep SVG
+// Figure out how to append multiple divs - DONE
+// Remove "What are you reading" when a book is added - DONE
 
 // git message:
