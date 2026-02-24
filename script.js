@@ -98,13 +98,11 @@ allButtons.forEach((button) =>
 
 usernameDialogForm.addEventListener("submit", () => {
     updateUsername();
-    usernameDialog.close();
     usernameDialogForm.reset();
 });
 
 newBookDialogForm.addEventListener("submit", () => {
     createBook();
-    newBookDialog.close();
     newBookDialogForm.reset();
 });
 
@@ -113,8 +111,9 @@ newBookDialogForm.addEventListener("submit", () => {
 
 // Add view changer functionality
 // Add line breaks on books when they break container width
+// Make header hide when scrolling down but show when scrolling up regardless of vp height
+// Style dialog and form, center it and size it based on screen size
 // Add checkbox for read status that updates book text
-// Clean up js file, create headers - DONE ish
 // Create functioning edit button
 
 // git message:
