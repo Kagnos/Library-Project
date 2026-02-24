@@ -62,7 +62,7 @@ function addBookToLibrary(title, author, pages, read) {
     book.appendChild(div).textContent = `Read: ${newBook.read}`;
 
     removeBookButton = document.createElement("button");
-    removeBookButton.classList.add("button", "library-button", "remove-book-button");
+    removeBookButton.classList.add("library-button", "red-button");
     removeBookButton.id = newBook.id;
     removeBookButton.textContent = "Remove";
     book.appendChild(removeBookButton);
@@ -115,17 +115,11 @@ allButtons.forEach((button) =>
 
 // To Do:
 
-// Fix bug: form isn't required anymore
-// Implement remove button functionality
-// Clean up js file, create headers
-// Create functioning edit and delete buttons, tbh I don't really need a side bar AND a header...
+// Fix bug: forms aren't required anymore
 // Add view changer functionality
-// Add SVGs for buttons similar to admin dashboard, when width is small, remove button text but keep SVG
-// Add line breaks on books when they break container width.
-
-// Fix spacing on sidebar buttons and library books - DONE ish
-// Figure out how to append multiple divs - DONE
-// Remove "What are you reading" when a book is added - DONE
+// Add line breaks on books when they break container width
+// Add checkbox for read status that updates book text
+// Clean up js file, create headers
+// Create functioning edit button
 
 // git message:
-// Remove side bar and move new book button to header
