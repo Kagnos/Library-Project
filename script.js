@@ -1,4 +1,8 @@
+// Global Variables
+
 const library = [];
+
+const libraryContainer = document.querySelector("#library-container");
 
 const allButtons = document.querySelectorAll("button");
 
@@ -7,9 +11,16 @@ const usernameDialogForm = document.querySelector("#username-dialog-form");
 const newBookDialog = document.querySelector("#new-book-dialog");
 const newBookDialogForm = document.querySelector("#new-book-dialog-form");
 
+// Functions
+
+function createBook() {
+    const data = new FormData(newBookDialogForm);
+    const entries = Object.fromEntries(data.entries());
+    addBookToLibrary(entries.book_title, entries.book_author, entries.book_pages, entries.book_read);
+}
+
 function addBookToLibrary(title, author, pages, read) {
     let placeholderBook = document.querySelector("#placeholder-book");
-    const libraryContainer = document.querySelector("#library-container");
 
     if(library.length === 0) {
         placeholderBook.remove();
@@ -24,6 +35,10 @@ function addBookToLibrary(title, author, pages, read) {
     };
     library.push(newBook);
 
+    addBookToDOM(newBook);
+};
+
+function addBookToDOM(newBook) {
     let book = document.createElement("div");
     book.classList.add("book");
     libraryContainer.appendChild(book);
@@ -52,15 +67,19 @@ function addBookToLibrary(title, author, pages, read) {
             placeholderBook.id = "placeholder-book";
             placeholderBook.textContent = "What are you reading?";
             libraryContainer.appendChild(placeholderBook);
-        }
-});
+        };
+    });
 };
 
-function createBook() {
-    const data = new FormData(newBookDialogForm);
+function updateUsername() {
+    const data = new FormData(usernameDialogForm);
     const entries = Object.fromEntries(data.entries());
-    addBookToLibrary(entries.book_title, entries.book_author, entries.book_pages, entries.book_read);
-}
+
+    const usernameButton = document.querySelector("#username-button");
+    usernameButton.textContent = entries.username;
+};
+
+// Event Listeners
 
 allButtons.forEach((button) => 
     button.addEventListener("click", () => {
@@ -69,21 +88,18 @@ allButtons.forEach((button) =>
                 return newBookDialog.showModal();
             case "cancel-new-book-button":
                 return newBookDialog.close();
-//            case "add-new-book-button":
-//                createBook();
-//                return newBookDialog.close();
             case "username-button":
                 return usernameDialog.showModal();
             case "cancel-username-button":
                 return usernameDialog.close();
-            case "add-username-button":
-                return usernameDialog.close();
-        }
+        };
     })
 );
 
 usernameDialogForm.addEventListener("submit", () => {
-
+    updateUsername();
+    usernameDialog.close();
+    usernameDialogForm.reset();
 });
 
 newBookDialogForm.addEventListener("submit", () => {
@@ -95,7 +111,6 @@ newBookDialogForm.addEventListener("submit", () => {
 
 // To Do:
 
-// Fix bug: forms aren't required anymore - DONE
 // Add view changer functionality
 // Add line breaks on books when they break container width
 // Add checkbox for read status that updates book text
