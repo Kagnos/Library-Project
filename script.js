@@ -43,14 +43,25 @@ function addBookToDOM(newBook) {
     book.classList.add("book");
     libraryContainer.appendChild(book);
 
-    let div = document.createElement("div");
-    book.appendChild(div).textContent = `Title: ${newBook.title}`;
-    div = document.createElement("div");
-    book.appendChild(div).textContent = `Author: ${newBook.author}`;
-    div = document.createElement("div");
-    book.appendChild(div).textContent = `Pages: ${newBook.pages}`;
-    div = document.createElement("div");
-    book.appendChild(div).textContent = `Read: ${newBook.read}`;
+    let bookText = document.createElement("div");
+    bookText.classList.add("book-text");
+    book.appendChild(bookText).innerHTML = `<b>Title: </b>`;
+    bookText.append(newBook.title);
+
+    bookText = document.createElement("div");
+    bookText.classList.add("book-text");
+    book.appendChild(bookText).innerHTML = `<b>Author: </b>`;
+    bookText.append(newBook.author);
+    
+    bookText = document.createElement("div");
+    bookText.classList.add("book-text");
+    book.appendChild(bookText).innerHTML = `<b>Pages: </b>`;
+    bookText.append(newBook.pages);
+    
+    bookText = document.createElement("div");
+    bookText.classList.add("book-text");
+    book.appendChild(bookText).innerHTML = `<b>Read: </b>`;
+    bookText.append(newBook.read);
 
     let removeBookButton = document.createElement("button");
     removeBookButton.classList.add("library-button", "red-button");
@@ -110,8 +121,6 @@ newBookDialogForm.addEventListener("submit", () => {
 // To Do:
 
 // Add view changer functionality
-// Add line breaks on books when they break container width
-// Make header hide when scrolling down but show when scrolling up regardless of vp height
 // Style dialog and form, center it and size it based on screen size
 // Add checkbox for read status that updates book text
 // Create functioning edit button
