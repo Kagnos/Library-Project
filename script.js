@@ -40,7 +40,11 @@ function addBookToLibrary(title, author, pages, read) {
 
 function addBookToDOM(newBook) {
     let book = document.createElement("div");
-    book.classList.add("book");
+    if (libraryContainer.classList[0] === "list-view-library") {
+        book.classList.add("book", "list-view-book");
+    } else {
+        book.classList.add("book", "grid-view-book");
+    }
     libraryContainer.appendChild(book);
 
     let bookText = document.createElement("div");
@@ -90,6 +94,21 @@ function updateUsername() {
     usernameButton.textContent = entries.username;
 };
 
+function toggleView() {
+    const gridViewButton = document.querySelector("#grid-view-button");
+    const listViewButton = document.querySelector("#list-view-button");
+    const allBooks = document.querySelectorAll(".book");
+
+    listViewButton.classList.toggle("hidden");
+    gridViewButton.classList.toggle("hidden");
+    libraryContainer.classList.toggle("list-view-library");
+    libraryContainer.classList.toggle("grid-view-library");
+    for (i = 0; i < library.length; i++) {
+        allBooks[i].classList.toggle("list-view-book");
+        allBooks[i].classList.toggle("grid-view-book");
+    };
+};
+
 // Event Listeners
 
 allButtons.forEach((button) => 
@@ -103,6 +122,10 @@ allButtons.forEach((button) =>
                 return usernameDialog.showModal();
             case "cancel-username-button":
                 return usernameDialog.close();
+            case "grid-view-button":
+                return toggleView();
+            case "list-view-button":
+                return toggleView();
         };
     })
 );
@@ -120,9 +143,6 @@ newBookDialogForm.addEventListener("submit", () => {
 
 // To Do:
 
-// Add view changer functionality
-// Style dialog and form, center it and size it based on screen size
-// Add checkbox for read status that updates book text
-// Create functioning edit button
+// Add checkbox for read status that updates book text or create functioning edit button
 
 // git message:
