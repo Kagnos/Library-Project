@@ -10,6 +10,8 @@ const usernameDialog = document.querySelector("#username-dialog");
 const usernameDialogForm = document.querySelector("#username-dialog-form");
 const newBookDialog = document.querySelector("#new-book-dialog");
 const newBookDialogForm = document.querySelector("#new-book-dialog-form");
+const editBookDialog = document.querySelector("#edit-book-dialog");
+const editBookDialogForm = document.querySelector("#edit-book-dialog-form");
 
 // Functions
 
@@ -17,7 +19,7 @@ function createBook() {
     const data = new FormData(newBookDialogForm);
     const entries = Object.fromEntries(data.entries());
     addBookToLibrary(entries.book_title, entries.book_author, entries.book_pages, entries.book_read);
-}
+};
 
 function addBookToLibrary(title, author, pages, read) {
     let placeholderBook = document.querySelector("#placeholder-book");
@@ -67,31 +69,88 @@ function addBookToDOM(newBook) {
     book.appendChild(bookText).innerHTML = `<b>Read: </b>`;
     bookText.append(newBook.read);
 
+    let bookButtonsContainer = document.createElement("div");
+    bookButtonsContainer.classList.add("book-buttons-container");
+    book.appendChild(bookButtonsContainer);
+
+    let editBookButton = document.createElement("button");
+    editBookButton.classList.add("book-button", "blue-button");
+    editBookButton.id = newBook.id;
+    editBookButton.textContent = "Edit";
+    bookButtonsContainer.appendChild(editBookButton);
+
     let removeBookButton = document.createElement("button");
-    removeBookButton.classList.add("library-button", "red-button");
+    removeBookButton.classList.add("book-button", "red-button");
     removeBookButton.id = newBook.id;
     removeBookButton.textContent = "Remove";
-    book.appendChild(removeBookButton);
+    bookButtonsContainer.appendChild(removeBookButton);
 
-    removeBookButton.addEventListener("click", (event) => {
-        const bookIndex = library.findIndex(item => item.id === event.target.id)
-        library.splice(bookIndex, 1);
-        libraryContainer.children[bookIndex].remove();
-        if(library.length === 0) {
-            placeholderBook = book;
-            placeholderBook.id = "placeholder-book";
-            placeholderBook.textContent = "What are you reading?";
-            libraryContainer.appendChild(placeholderBook);
-        };
-    });
+    editBookButton.addEventListener("click", (event) => openEditBookDialog(event));
+    removeBookButton.addEventListener("click", (event) => removeBook(event, book));
+}
+
+function openEditBookDialog(event) {
+    const bookIndex = library.findIndex(item => item.id === event.target.id);
+    const bookTitle = document.querySelector("#edit-book-dialog-form > .form-item-container > #title");
+    const bookAuthor = document.querySelector("#edit-book-dialog-form > .form-item-container > #author");
+    const bookPages = document.querySelector("#edit-book-dialog-form > .form-item-container > #pages");
+    const bookReadYes = document.querySelector("#edit-book-dialog-form > .form-item-container > .form-radio-container > #yes");
+    const bookReadNo = document.querySelector("#edit-book-dialog-form > .form-item-container > .form-radio-container > #no");
+
+    editBookDialog.showModal();
+    bookTitle.value = library[bookIndex].title;
+    bookAuthor.value = library[bookIndex].author;
+    bookPages.value = library[bookIndex].pages;   
+    if (library[bookIndex].read === "Yes") {
+        bookReadYes.setAttribute("checked", "");
+        bookReadNo.removeAttribute("checked");
+    } else {
+        bookReadNo.setAttribute("checked", "");
+        bookReadYes.removeAttribute("checked");
+    };
+};
+
+function removeBook(event, book) {
+    const bookIndex = library.findIndex(item => item.id === event.target.id);
+    library.splice(bookIndex, 1);
+    libraryContainer.children[bookIndex].remove();
+    if(library.length === 0) {
+        placeholderBook = book;
+        placeholderBook.id = "placeholder-book";
+        placeholderBook.textContent = "What are you reading?";
+        libraryContainer.appendChild(placeholderBook);
+    };
+};
+
+function editBook() {
+    const bookIndex = library.findIndex(item => item.id === event.id);
+    const data = new FormData(editBookDialogForm);
+    const entries = Object.fromEntries(data.entries());
+
+    console.log(event);
+    console.log(library[bookIndex]);
+
+    library[bookIndex].title = entries.book_title;
+    library[bookIndex].author = entries.book_author;
+    library[bookIndex].pages = entries.book_pages;
+    library[bookIndex].read = entries.book_read;
+
 };
 
 function updateUsername() {
     const data = new FormData(usernameDialogForm);
     const entries = Object.fromEntries(data.entries());
-
     const usernameButton = document.querySelector("#username-button");
+    
     usernameButton.textContent = entries.username;
+};
+
+function clearCheckedAttributes() {
+    const bookReadYes = document.querySelector("#edit-book-dialog-form > .form-item-container > .form-radio-container > #yes");
+    const bookReadNo = document.querySelector("#edit-book-dialog-form > .form-item-container > .form-radio-container > #no");
+
+    bookReadYes.removeAttribute("checked");
+    bookReadNo.removeAttribute("checked");
 };
 
 function toggleView() {
@@ -118,6 +177,11 @@ allButtons.forEach((button) =>
                 return newBookDialog.showModal();
             case "cancel-new-book-button":
                 return newBookDialog.close();
+            case "cancel-edit-book-button":
+                clearCheckedAttributes();
+                return editBookDialog.close();
+            case "reset-edit-book-button":
+                return clearCheckedAttributes();
             case "username-button":
                 return usernameDialog.showModal();
             case "cancel-username-button":
@@ -130,19 +194,29 @@ allButtons.forEach((button) =>
     })
 );
 
-usernameDialogForm.addEventListener("submit", () => {
-    updateUsername();
-    usernameDialogForm.reset();
-});
-
 newBookDialogForm.addEventListener("submit", () => {
     createBook();
     newBookDialogForm.reset();
 });
 
+editBookDialogForm.addEventListener("submit", () => {
+    editBook();
+    editBookDialogForm.reset();
+});
+
+usernameDialogForm.addEventListener("submit", () => {
+    updateUsername();
+    usernameDialogForm.reset();
+});
 
 // To Do:
-
-// Add checkbox for read status that updates book text or create functioning edit button
+// Add checkbox for read status that updates book text or create functioning edit button... - WIP
+// Right now edit buttons work and modal pops up. I need you to:
+// 1. Figure out how to grab the data of the library book (bookIndex) and display it in the modal - DONE
+// 2. Update the book with a function when the user submits valid data
+// This isn't as important, but I also need you to add a book-buttons-container around the edit and 
+// remove buttons inside the addBookToDOM function and clean up that huge function, maybe split it 
+// into smaller ones if you can? - DONE ish
+// Then we will be as good as gold! After that we can mess around with color themes
 
 // git message:

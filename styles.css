@@ -191,7 +191,12 @@ h1, h2, h3, h4, h5, h6 {
     overflow-wrap: anywhere;
 }
 
-.library-button {
+.book-buttons-container {
+    display: flex;
+    gap: 5px;
+}
+
+.book-button {
     padding: 5px;
     font-size: 1.5rem;
     height: fit-content;
@@ -280,6 +285,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Media Queries */
 
+@media (max-width: 850px) {
+    .grid-view-library {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 634px) {
     .header-button {
         font-size: 1rem;
@@ -292,6 +303,9 @@ h1, h2, h3, h4, h5, h6 {
     }
     .header-button {
         font-size: 1rem;
+    }
+    .grid-view-library {
+        grid-template-columns: 1fr;
     }
 }
 

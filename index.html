@@ -27,19 +27,6 @@
 
 </main>
 
-    <dialog id="username-dialog" class="dialog-container">
-        <p class="dialog-title">Username</p>
-        <form id="username-dialog-form" method="dialog">
-            <div class="form-item-container">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" minlength="2" maxlength="10" required>
-            </div>
-            <button class="dialog-button red-button" id="cancel-username-button" type="reset">Cancel</button>
-            <button class="dialog-button blue-button" id="clear-username-button" type="reset">Clear</button>
-            <button class="dialog-button green-button" id="add-username-button" type="submit">Done</button>
-        </form>
-    </dialog>
-    
     <dialog id="new-book-dialog" class="dialog-container">
         <p class="dialog-title">New Book</p>
         <form id="new-book-dialog-form" method="dialog">
@@ -67,10 +54,55 @@
                 </div>
             </div>
             <button class="dialog-button red-button" id="cancel-new-book-button" type="reset">Cancel</button>
-            <button class="dialog-button blue-button" id="clear-new-book-button" type="reset">Clear</button>
-            <button class="dialog-button green-button" id="add-new-book-button" type="submit">Add Book</button>
+            <button class="dialog-button blue-button" id="reset-new-book-button" type="reset">Clear</button>
+            <button class="dialog-button green-button" id="submit-new-book-button" type="submit">Add Book</button>
         </form>
     </dialog>
 
+    <dialog id="edit-book-dialog" class="dialog-container">
+        <p class="dialog-title">Edit Book</p>
+        <form id="edit-book-dialog-form" method="dialog">
+            <div class="form-item-container">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="book_title" minlength="2" maxlength="50" required>
+            </div>
+            <div class="form-item-container">
+                <label for="author">Author</label>
+                <input type="text" id="author" name="book_author" minlength="2" maxlength="50" required>
+            </div>
+            <div class="form-item-container">
+            <label for="pages">Pages</label>
+            <input type="number" id="pages" name="book_pages" min="1" max="1000000" required>
+            </div>
+            <div class="form-item-container">
+                <p>Read</p>
+                <div class="form-radio-container">
+                    <input type="radio" id="yes" name="book_read" value="Yes" required>
+                    <label for="yes">Yes</label>
+                </div>
+                <div class="form-radio-container">
+                    <input type="radio" id="no" name="book_read" value="No" required>
+                    <label for="no">No</label>
+                </div>
+            </div>
+            <button class="dialog-button red-button" id="cancel-edit-book-button" type="reset">Cancel</button>
+            <button class="dialog-button blue-button" id="reset-edit-book-button" type="reset">Clear</button>
+            <button class="dialog-button green-button" id="submit-edit-book-button" type="submit">Edit Book</button>
+        </form>
+    </dialog>
+
+    <dialog id="username-dialog" class="dialog-container">
+        <p class="dialog-title">Username</p>
+        <form id="username-dialog-form" method="dialog">
+            <div class="form-item-container">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" minlength="2" maxlength="10" required>
+            </div>
+            <button class="dialog-button red-button" id="cancel-username-button" type="reset">Cancel</button>
+            <button class="dialog-button blue-button" id="reset-username-button" type="reset">Clear</button>
+            <button class="dialog-button green-button" id="submit-username-button" type="submit">Done</button>
+        </form>
+    </dialog>
+    
 </body>
 </html>
