@@ -13,11 +13,13 @@
 <main id="main-container">
 
     <header id="header-container">
-        <h1 id="welcome-message">Welcome to The Library, <button id="username-button">User</button></h1>
+        <h1 id="welcome-message">Welcome to the Library, <button id="username-button">User</button></h1>
         <div id="header-buttons-container">
             <button id="new-book-button" class="header-button green-button">New Book</button>
-            <button id="grid-view-button" class="svg-button hidden" aria-label="Toggle list view"><svg class="header-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8 6L21 6.00078M8 12L21 12.0008M8 18L21 18.0007M3 6.5H4V5.5H3V6.5ZM3 12.5H4V11.5H3V12.5ZM3 18.5H4V17.5H3V18.5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
-            <button id="list-view-button" class="svg-button" aria-label="Toggle grid view"><svg class="header-svg" fill="#000000" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M30 32h-10c-1.105 0-2-0.895-2-2v-10c0-1.105 0.895-2 2-2h10c1.105 0 2 0.895 2 2v10c0 1.105-0.895 2-2 2zM30 20h-10v10h10v-10zM30 14h-10c-1.105 0-2-0.896-2-2v-10c0-1.105 0.895-2 2-2h10c1.105 0 2 0.895 2 2v10c0 1.104-0.895 2-2 2zM30 2h-10v10h10v-10zM12 32h-10c-1.105 0-2-0.895-2-2v-10c0-1.105 0.895-2 2-2h10c1.104 0 2 0.895 2 2v10c0 1.105-0.896 2-2 2zM12 20h-10v10h10v-10zM12 14h-10c-1.105 0-2-0.896-2-2v-10c0-1.105 0.895-2 2-2h10c1.104 0 2 0.895 2 2v10c0 1.104-0.896 2-2 2zM12 2h-10v10h10v-10z"></path> </g></svg></button>
+            <button id="view-toggle-button" class="svg-button">
+                <svg id="list-view-svg" class="header-svg hidden" aria-label="Toggle list view" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8 6L21 6.00078M8 12L21 12.0008M8 18L21 18.0007M3 6.5H4V5.5H3V6.5ZM3 12.5H4V11.5H3V12.5ZM3 18.5H4V17.5H3V18.5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                <svg id="grid-view-svg" class="header-svg" aria-label="Toggle grid view" fill="#000000" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M30 32h-10c-1.105 0-2-0.895-2-2v-10c0-1.105 0.895-2 2-2h10c1.105 0 2 0.895 2 2v10c0 1.105-0.895 2-2 2zM30 20h-10v10h10v-10zM30 14h-10c-1.105 0-2-0.896-2-2v-10c0-1.105 0.895-2 2-2h10c1.105 0 2 0.895 2 2v10c0 1.104-0.895 2-2 2zM30 2h-10v10h10v-10zM12 32h-10c-1.105 0-2-0.895-2-2v-10c0-1.105 0.895-2 2-2h10c1.104 0 2 0.895 2 2v10c0 1.105-0.896 2-2 2zM12 20h-10v10h10v-10zM12 14h-10c-1.105 0-2-0.896-2-2v-10c0-1.105 0.895-2 2-2h10c1.104 0 2 0.895 2 2v10c0 1.104-0.896 2-2 2zM12 2h-10v10h10v-10z"></path> </g></svg></button>
+            </button>
         </div>
     </header>
 
@@ -53,7 +55,7 @@
                     <label for="no">No</label>
                 </div>
             </div>
-            <button class="dialog-button red-button" id="cancel-new-book-button" type="reset">Cancel</button>
+            <button class="dialog-button red-button" id="cancel-new-book-button" type="button">Cancel</button>
             <button class="dialog-button blue-button" id="reset-new-book-button" type="reset">Clear</button>
             <button class="dialog-button green-button" id="submit-new-book-button" type="submit">Add Book</button>
         </form>
@@ -85,7 +87,7 @@
                     <label for="no">No</label>
                 </div>
             </div>
-            <button class="dialog-button red-button" id="cancel-edit-book-button" type="reset">Cancel</button>
+            <button class="dialog-button red-button" id="cancel-edit-book-button" type="button">Cancel</button>
             <button class="dialog-button blue-button" id="reset-edit-book-button" type="reset">Clear</button>
             <button class="dialog-button green-button" id="submit-edit-book-button" type="submit">Edit Book</button>
         </form>
@@ -98,7 +100,7 @@
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" minlength="2" maxlength="10" required>
             </div>
-            <button class="dialog-button red-button" id="cancel-username-button" type="reset">Cancel</button>
+            <button class="dialog-button red-button" id="cancel-username-button" type="button">Cancel</button>
             <button class="dialog-button blue-button" id="reset-username-button" type="reset">Clear</button>
             <button class="dialog-button green-button" id="submit-username-button" type="submit">Done</button>
         </form>

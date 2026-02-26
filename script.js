@@ -1,4 +1,4 @@
-// Global Variables
+//// Global Variables
 
 const library = [];
 
@@ -15,7 +15,9 @@ const newBookDialogForm = document.querySelector("#new-book-dialog-form");
 const editBookDialog = document.querySelector("#edit-book-dialog");
 const editBookDialogForm = document.querySelector("#edit-book-dialog-form");
 
-// Functions
+//// Functions
+
+// New Book Functions
 
 function createBook() {
     const data = new FormData(newBookDialogForm);
@@ -88,9 +90,13 @@ function addBookToDOM(newBook) {
     removeBookButton.textContent = "Remove";
     bookButtonsContainer.appendChild(removeBookButton);
 
+    // Book button event listeners must be added when the buttons are created since book buttons don't exist in the DOM yet.
+
     editBookButton.addEventListener("click", (event) => openEditBookDialog(event));
     removeBookButton.addEventListener("click", (event) => removeBook(event, book));
-}
+};
+
+// Edit and Remove Book Functions
 
 function openEditBookDialog(event) {
     currentBookID = event.target.id;
@@ -156,6 +162,8 @@ function editBookDOM(bookIndex, bookTitle, bookAuthor, bookPages, bookRead) {
     libraryContainer.children[bookIndex].children[3].append(bookRead);
 };
 
+// Other Functions
+
 function updateUsername() {
     const data = new FormData(usernameDialogForm);
     const entries = Object.fromEntries(data.entries());
@@ -173,12 +181,12 @@ function clearCheckedAttributes() {
 };
 
 function toggleView() {
-    const gridViewButton = document.querySelector("#grid-view-button");
-    const listViewButton = document.querySelector("#list-view-button");
+    const gridViewSVG = document.querySelector("#grid-view-svg");
+    const listViewSVG = document.querySelector("#list-view-svg");
     const allBooks = document.querySelectorAll(".book");
 
-    listViewButton.classList.toggle("hidden");
-    gridViewButton.classList.toggle("hidden");
+    listViewSVG.classList.toggle("hidden");
+    gridViewSVG.classList.toggle("hidden");
     libraryContainer.classList.toggle("list-view-library");
     libraryContainer.classList.toggle("grid-view-library");
     for (i = 0; i < library.length; i++) {
@@ -187,7 +195,7 @@ function toggleView() {
     };
 };
 
-// Event Listeners
+//// Event Listeners
 
 allButtons.forEach((button) => 
     button.addEventListener("click", () => {
@@ -195,17 +203,20 @@ allButtons.forEach((button) =>
             case "new-book-button":
                 return newBookDialog.showModal();
             case "cancel-new-book-button":
+                newBookDialogForm.reset();
                 return newBookDialog.close();
             case "cancel-edit-book-button":
                 clearCheckedAttributes();
+                editBookDialogForm.reset();
                 return editBookDialog.close();
             case "reset-edit-book-button":
                 return clearCheckedAttributes();
             case "username-button":
                 return usernameDialog.showModal();
             case "cancel-username-button":
+                usernameDialogForm.reset();
                 return usernameDialog.close();
-            case "grid-view-button":
+            case "view-toggle-button":
                 return toggleView();
             case "list-view-button":
                 return toggleView();
@@ -229,6 +240,7 @@ usernameDialogForm.addEventListener("submit", () => {
 });
 
 // To Do:
-// Clean up code and mess around with CSS and colors
+// Clean up code
+// Fix bug: Pressing escape doesn't function the same way as pressing cancel on a dialog
 
 // git message:
