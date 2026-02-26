@@ -4,6 +4,8 @@ const library = [];
 
 const libraryContainer = document.querySelector("#library-container");
 
+let currentBookID;
+
 const allButtons = document.querySelectorAll("button");
 
 const usernameDialog = document.querySelector("#username-dialog");
@@ -42,6 +44,7 @@ function addBookToLibrary(title, author, pages, read) {
 
 function addBookToDOM(newBook) {
     let book = document.createElement("div");
+    book.id = newBook.id;
     if (libraryContainer.classList[0] === "list-view-library") {
         book.classList.add("book", "list-view-book");
     } else {
@@ -90,6 +93,7 @@ function addBookToDOM(newBook) {
 }
 
 function openEditBookDialog(event) {
+    currentBookID = event.target.id;
     const bookIndex = library.findIndex(item => item.id === event.target.id);
     const bookTitle = document.querySelector("#edit-book-dialog-form > .form-item-container > #title");
     const bookAuthor = document.querySelector("#edit-book-dialog-form > .form-item-container > #author");
@@ -123,18 +127,33 @@ function removeBook(event, book) {
 };
 
 function editBook() {
-    const bookIndex = library.findIndex(item => item.id === event.id);
+    const bookIndex = library.findIndex(item => item.id === currentBookID);
     const data = new FormData(editBookDialogForm);
     const entries = Object.fromEntries(data.entries());
 
-    console.log(event);
-    console.log(library[bookIndex]);
+    editLibrary(bookIndex, entries.book_title, entries.book_author, entries.book_pages, entries.book_read);
+    editBookDOM(bookIndex, entries.book_title, entries.book_author, entries.book_pages, entries.book_read);
+};
 
-    library[bookIndex].title = entries.book_title;
-    library[bookIndex].author = entries.book_author;
-    library[bookIndex].pages = entries.book_pages;
-    library[bookIndex].read = entries.book_read;
+function editLibrary(bookIndex, bookTitle, bookAuthor, bookPages, bookRead) {
+    library[bookIndex].title = bookTitle;
+    library[bookIndex].author = bookAuthor;
+    library[bookIndex].pages = bookPages;
+    library[bookIndex].read = bookRead;
+};
 
+function editBookDOM(bookIndex, bookTitle, bookAuthor, bookPages, bookRead) {
+    libraryContainer.children[bookIndex].children[0].innerHTML = `<b>Title: </b>`;
+    libraryContainer.children[bookIndex].children[0].append(bookTitle);
+
+    libraryContainer.children[bookIndex].children[1].innerHTML = `<b>Author: </b>`;
+    libraryContainer.children[bookIndex].children[1].append(bookAuthor);
+
+    libraryContainer.children[bookIndex].children[2].innerHTML = `<b>Pages: </b>`;
+    libraryContainer.children[bookIndex].children[2].append(bookPages);
+
+    libraryContainer.children[bookIndex].children[3].innerHTML = `<b>Read: </b>`;
+    libraryContainer.children[bookIndex].children[3].append(bookRead);
 };
 
 function updateUsername() {
@@ -210,13 +229,6 @@ usernameDialogForm.addEventListener("submit", () => {
 });
 
 // To Do:
-// Add checkbox for read status that updates book text or create functioning edit button... - WIP
-// Right now edit buttons work and modal pops up. I need you to:
-// 1. Figure out how to grab the data of the library book (bookIndex) and display it in the modal - DONE
-// 2. Update the book with a function when the user submits valid data
-// This isn't as important, but I also need you to add a book-buttons-container around the edit and 
-// remove buttons inside the addBookToDOM function and clean up that huge function, maybe split it 
-// into smaller ones if you can? - DONE ish
-// Then we will be as good as gold! After that we can mess around with color themes
+// Clean up code and mess around with CSS and colors
 
 // git message:
