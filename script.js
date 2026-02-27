@@ -1,4 +1,4 @@
-//// Global Variables
+// Global Variables
 
 const library = [];
 
@@ -15,7 +15,7 @@ const newBookDialogForm = document.querySelector("#new-book-dialog-form");
 const editBookDialog = document.querySelector("#edit-book-dialog");
 const editBookDialogForm = document.querySelector("#edit-book-dialog-form");
 
-//// Functions
+// Functions
 
 // New Book Functions
 
@@ -51,7 +51,7 @@ function addBookToDOM(newBook) {
         book.classList.add("book", "list-view-book");
     } else {
         book.classList.add("book", "grid-view-book");
-    }
+    };
     libraryContainer.appendChild(book);
 
     let bookText = document.createElement("div");
@@ -195,7 +195,7 @@ function toggleView() {
     };
 };
 
-//// Event Listeners
+// Event Listeners
 
 allButtons.forEach((button) => 
     button.addEventListener("click", () => {
@@ -239,8 +239,10 @@ usernameDialogForm.addEventListener("submit", () => {
     usernameDialogForm.reset();
 });
 
-// To Do:
-// Clean up code
-// Fix bug: Pressing escape doesn't function the same way as pressing cancel on a dialog
+newBookDialog.addEventListener("cancel", (event) => {
+  newBookDialogForm.reset();
+});
 
-// git message:
+usernameDialog.addEventListener("cancel", (event) => {
+  usernameDialogForm.reset();
+});

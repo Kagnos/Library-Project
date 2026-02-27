@@ -78,7 +78,6 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 11fr;
     height: 100vh;
-    overflow: scroll;
 }
 
 #header-container {
@@ -114,7 +113,7 @@ h1, h2, h3, h4, h5, h6 {
 .grid-view-library {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto 1fr;
+    grid-template-rows: repeat(3, 1fr);
     gap: 20px;
     padding: 20px;
 }
@@ -152,7 +151,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header-svg {
-    height: 50px;
+    min-width: 50px;
     width: 50px;
 }
 
@@ -184,7 +183,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .grid-view-book {
     flex-direction: column;
-    align-self: end;
 }
 
 .book-text {
@@ -200,8 +198,6 @@ h1, h2, h3, h4, h5, h6 {
 .book-button {
     padding: 5px;
     font-size: 1.5rem;
-    height: fit-content;
-    width: fit-content;
     font-weight: bold;
     border: 2px solid black;
     border-radius: 10px;
@@ -231,7 +227,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1%;
     font-weight: bold;
     border: 2px solid black;
-    border-radius: 5px;
+    border-radius: 10px;
     color: black;
     margin-top: 10%;
 }
@@ -249,8 +245,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-item-container > input {
-    border: none;
-    border-radius: 5px;
+    border: 2px solid #9c9c9c;
+    border-radius: 10px;
 }
 
 .form-radio-container {
@@ -302,23 +298,17 @@ h1, h2, h3, h4, h5, h6 {
     #welcome-message, .dialog-container {
         font-size: 1.5rem;
     }
-    .header-button {
-        font-size: 1rem;
-    }
     .grid-view-library {
         grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 445px) {
+@media (max-width: 495px) {
     #welcome-message {
         display: none;
     }
     #header-container {
         justify-content: flex-end;
-    }
-    .dialog-container {
-        width: 100vw;
     }
     .dialog-title {
         font-size: 2rem;
@@ -328,5 +318,23 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 280px) {
     .book-buttons-container {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 200px) {
+    #header-container > *, #library-container > *, .dialog-container, .dialog-container > * {
+        display: none;
+    }
+}
+
+@media (max-height: 450px) {
+    #header-container {
+        height: 60px;
+    }
+    #welcome-message, .dialog-container {
+        font-size: 1.5rem;
+    }
+    .header-button {
+        font-size: 1rem;
     }
 }
