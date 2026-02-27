@@ -8,7 +8,7 @@ This project has taught me and helped me:
 * How to create functional toggle buttons
 * Get better at structuring code
 * Get better at committing gits more often
-* get better at creating simple yet effective UIs
+* Get better at creating simple yet effective UIs
 * Get better at working with JavaScript loops, arrays, DOM injection, DOM manipulation, event listeners, and functions
 * Get better at working with forms, data collection, and data manipulation
 
