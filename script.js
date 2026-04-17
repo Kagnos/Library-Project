@@ -195,6 +195,10 @@ function toggleView() {
     };
 };
 
+function fuckOff() {
+
+};
+
 // Event Listeners
 
 allButtons.forEach((button) => 
@@ -245,4 +249,12 @@ newBookDialog.addEventListener("cancel", (event) => {
 
 usernameDialog.addEventListener("cancel", (event) => {
   usernameDialogForm.reset();
+});
+
+const author = document.querySelector("#author");
+
+author.addEventListener("input", (event) => {
+  author.checkValidity() ?
+  author.setCustomValidity("") :
+  author.setCustomValidity("The author name must be filled!");
 });
